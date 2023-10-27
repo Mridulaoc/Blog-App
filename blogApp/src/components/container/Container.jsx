@@ -1,8 +1,9 @@
 
+import React from 'react';
 
 const Container = ({children}) => {
   return (
-    <div className='mx-auto w-full'>
+    <div className='mx-auto w-full min-w-fit'>
         {children}      
     </div>
   )
