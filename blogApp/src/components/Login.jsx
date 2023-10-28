@@ -39,8 +39,6 @@ const Login = () => {
         {error && <p>{error}</p>}       
         <form onSubmit={handleSubmit(login)}>
             <Input
-            label='Email :'
-            placeholder='Enter your email address'
             type='email'
             {...register("email",{
                 required:true,
