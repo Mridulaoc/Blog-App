@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {Link,useNavigate} from 'react-router-dom'
 import {Input,Button} from './index'
 import {useForm} from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { logIn } from '../store/authSlicer'
-import authService, { AuthService } from '../appwrite/auth'
+import authService from '../appwrite/auth'
 
 const Signup = () => {
     const {register, handleSubmit} =useForm()
