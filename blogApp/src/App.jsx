@@ -5,6 +5,7 @@ import { Header,Footer } from './components/index'
 import { useDispatch } from 'react-redux';
 import authService from './appwrite/auth'
 import {logIn,logOut} from './store/authSlicer'
+import { Outlet } from 'react-router-dom';
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
     <>
       <div className='h-screen'>
       <Header/>     
-      <h1>Blog App</h1>
+      {Outlet}
       <Footer/>
       </div>
      

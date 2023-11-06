@@ -9,6 +9,7 @@ import Login from "./Login";
 import PostCard from "./PostCard";
 import RTE from "./RTE";
 import Signup from "./Signup";
+import AuthLayout from "./AuthLayout";
 
 export {
     Header,
@@ -21,5 +22,6 @@ export {
     Login,
     PostCard,
     RTE,
-    Signup
+    Signup,
+    AuthLayout
 }
