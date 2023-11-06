@@ -15,7 +15,7 @@ const AuthLayout = ({children,authentication=true}) => {
             navigate('/')
         }
 
-        setLoader(false)
+        // setLoader(false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[authStatus,authentication,navigate])

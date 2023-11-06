@@ -31,11 +31,11 @@ function App() {
 
   return !loading ? (
     <>
-      <div className='h-screen'>
+      
       <Header/>     
-      {Outlet}
+      <Outlet/>
       <Footer/>
-      </div>
+      
      
     </>
   ):null
