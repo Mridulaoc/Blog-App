@@ -33,7 +33,7 @@ const Header = () => {
 
     
       <header className='border-b-2 border-blue-500'>
-        <Container>
+        {/* <Container> */}
         <nav className='flex py-4 justify-between'>
           <div>Logo</div>
           <div>
@@ -53,7 +53,7 @@ const Header = () => {
             </ul>
           </div>         
         </nav>
-      </Container>
+      {/* </Container> */}
       </header>
     
     
