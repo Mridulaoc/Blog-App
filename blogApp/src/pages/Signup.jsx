@@ -1,9 +1,10 @@
 import React from 'react'
+import {Signup as SignupComponent} from '../components/index'
 
 const Signup = () => {
   return (
     <div>
-      Signup
+      <SignupComponent/>
     </div>
   )
 }

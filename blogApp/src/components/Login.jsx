@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import {useForm}  from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import authService from '../appwrite/auth'
@@ -14,11 +14,15 @@ const Login = () => {
     const {register,handleSubmit} = useForm();
 
     const login =async(data)=>{
+        console.log(data)
         setError("");
         try {
             const session = await authService.login(data);
+            console.log(session)
+           
         if (session) {
             const userData= await authService.getCurrentUser()
+            console.log(userData);
             if (userData) dispatch(authLogin(userData))
             navigate('/')            
         }
@@ -29,17 +33,22 @@ const Login = () => {
         
     }
   return (
-    <div className='w-full'>
+    <div className='w-full border-blue-500 border-solid border-2 mt-5'>
         <div>Logo</div>
         <h2>Sign In</h2>
-        <p>Don`&apos`t Have An Account?</p>
+        <div className='flex gap-2 justify-center'>
+        <p>Don't Have An Account?</p>
         <Link to={'/signup'}>
           Sign Up
         </Link> 
+        </div>
         {error && <p>{error}</p>}       
         <form onSubmit={handleSubmit(login)}>
             <Input
+            label='Email :'
+            placeholder='Enter your email address'
             type='email'
+            className='flex flex-col mx-auto mb-2 text-black'
             {...register("email",{
                 required:true,
                 validate:{
@@ -51,6 +60,7 @@ const Login = () => {
             label='Password :'
             placeholder='Enter your password'
             type='password'
+            className='flex flex-col mx-auto mb-2 text-black'
             {...register("password",{
                 required:true,
             })}

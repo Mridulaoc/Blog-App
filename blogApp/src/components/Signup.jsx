@@ -17,10 +17,14 @@ const Signup = () => {
         setError("")
         try {
             const userData = await authService.createAccount(data);
+            console.log(userData)
             if(userData){
                 const userData = await authService.getCurrentUser()
-                if(userData) dispatch(logIn(userData));
+               
+                if(userData) {
+                dispatch(logIn(userData));
                 navigate('/')
+                }
             }
         } catch (error) {
             setError(error.message)
@@ -31,22 +35,28 @@ const Signup = () => {
     }
   return (
     <div className='w-full'>
-        <div className='w-full flex'>
+        <div className='w-full flex flex-col'>
             <div>Logo</div>
             <h2>Sign Up</h2>
             <p>Already Have An Account? </p>
             <Link to={'/login'}>Sign In</Link>
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit(createAccount)}>
-                <input
+                <Input
                 label='Name :'
                 placeholder='Enter your name'
+                className='flex flex-col mx-auto mb-2 text-black'
                 {...register("name",{
                     required: true,
                 })}
+                
                 />
+                
                 <Input
             type='email'
+            label='Email:'
+            placeholder='Enter email address'
+            className='flex flex-col mx-auto mb-2 text-black'
             {...register("email",{
                 required:true,
                 validate:{
@@ -58,6 +68,7 @@ const Signup = () => {
             label='Password :'
             placeholder='Enter your password'
             type='password'
+            className='flex flex-col mx-auto mb-2 text-black'
             {...register("password",{
                 required:true,
             })}
