@@ -14,6 +14,7 @@ const Signup = () => {
     
 
     const createAccount=async(data)=>{
+        console.log(data)
         setError("")
         try {
             const userData = await authService.createAccount(data);
@@ -23,7 +24,7 @@ const Signup = () => {
                
                 if(userData) {
                 dispatch(logIn(userData));
-                navigate('/')
+                navigate('/login')
                 }
             }
         } catch (error) {

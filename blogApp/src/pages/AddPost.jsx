@@ -1,10 +1,11 @@
 import React from 'react'
+import {Container, PostForm} from '../components/index'
 
 const AddPost = () => {
   return (
-    <div>
-      Add Post
-    </div>
+    <Container>
+      <PostForm/>
+    </Container>
   )
 }
 

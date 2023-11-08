@@ -7,13 +7,14 @@ import dbServices from '../../appwrite/config'
 
 const PostForm = ({post}) => {
     const navigate = useNavigate()
-    const userData = useSelector(state=>state.auth.userData)
+    const userData = useSelector((state)=>state.auth.userData)
+    console.log(userData)
     const {register, handleSubmit, watch, setValue,control, getValues}=useForm({
         defaultValues:{
             title: post ?. title || '',
-            slug: post.slug || '',
+            slug: post ?.slug || '',
             content : post ?. content || '',
-            status: post ?. status || '',
+            status: post ?. status || 'active',
         }
     })
 
@@ -32,13 +33,15 @@ const PostForm = ({post}) => {
                 navigate('/post/${dbPost.$id}');
              }
         }else {
-            const file = await dbServices.upload(post.image[0]);
+            console.log(data)
+            const file = await dbServices.upload(data.image[0]);
             if(file){
                 const fileId = file.$id;
+                console.log(fileId)
                 data.featuredImage= fileId;
                 const dbPost= await dbServices.createPost({
                     ...data,
-                    username:userData.$id
+                    username:userData.$id,
                 })
                 if(dbPost){
                     navigate('/post/${dbPost.$id}');
@@ -75,13 +78,13 @@ const PostForm = ({post}) => {
             <Input
              label="Title" 
              placeholder="Title" 
-             className=''
+             className='text-black'
              {...register("title",{required:true})}             
              />
              <Input
              label="Slug"
              placeholder='Slug'
-             className=''
+             className='text-black'
              {...register("slug",{required:true})}
              onInput={(e)=>
              setValue("slug",slugTransform(e.target.value),{shouldValidate:true})}             
@@ -90,7 +93,8 @@ const PostForm = ({post}) => {
               label="Content"
               name='content'
               control={control}
-              defaultValue={getValues("content")}             
+              defaultValue={getValues("content")}  
+              className='text-black'           
              />             
         </div>
         <div>
@@ -98,7 +102,7 @@ const PostForm = ({post}) => {
             label="Featured Image"
             type="file"
             accept="image/png, image/jpg, image/jpeg, image/gif"
-            className=""
+            className="text-black"
             {...register("image",{required:!post})}            
             />
             {post && 
@@ -111,6 +115,7 @@ const PostForm = ({post}) => {
             <Select 
               label="Status"
               options={["Active", "Inactive"]}
+              className="text-black"
               {...register("status",{required:true})}            
             />
             <Button

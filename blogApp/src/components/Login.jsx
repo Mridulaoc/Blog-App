@@ -2,7 +2,7 @@ import  { useState } from 'react'
 import {useForm}  from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import authService from '../appwrite/auth'
-import {logIn as authLogin} from '../store/authSlicer'
+import {logIn} from '../store/authSlicer'
 import {useDispatch} from 'react-redux'
 import {Input, Button} from './index'
 
@@ -23,8 +23,10 @@ const Login = () => {
         if (session) {
             const userData= await authService.getCurrentUser()
             console.log(userData);
-            if (userData) dispatch(authLogin(userData))
-            navigate('/')            
+            if (userData) {
+                dispatch(logIn(userData))
+                navigate('/home') 
+            }           
         }
         } catch (error) {
             setError(error.message)

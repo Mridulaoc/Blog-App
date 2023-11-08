@@ -11,7 +11,7 @@ const Header = () => {
     const navItems = [
       {
         name: 'Home',
-        url:'/',
+        url:'/login',
         active: true,
       },     
       {
@@ -21,9 +21,21 @@ const Header = () => {
       },
       
       {
-            name: 'Signup',
-            url:'/signUp',
-            active: !authStatus,
+          name: 'Signup',
+          url:'/signUp',
+          active: !authStatus,
+      },
+
+      {
+          name: 'All Posts',
+          url:'/all-posts',
+          active: authStatus,
+      },
+
+      {
+          name:'Add Post',
+          url:'/add-post',
+          active: authStatus,
       }
     ]
 
@@ -33,7 +45,7 @@ const Header = () => {
 
     
       <header className='border-b-2 border-blue-500'>
-        {/* <Container> */}
+        <Container>
         <nav className='flex py-4 justify-between'>
           <div>Logo</div>
           <div>
@@ -53,7 +65,7 @@ const Header = () => {
             </ul>
           </div>         
         </nav>
-      {/* </Container> */}
+      </Container>
       </header>
     
     
