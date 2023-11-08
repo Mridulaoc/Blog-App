@@ -87,12 +87,12 @@ export class DbServices{
     async getPosts(queries=[Query.equal("status","active")]){
 
         try {
-            await this.databases.listDocuments(
+            return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries,
             )
-            return true;
+            
         } catch (error) {
             console.log(error)
             return false;
@@ -134,7 +134,7 @@ export class DbServices{
 
     getFilePreview(fileId){
         try {
-            this.bucket.getFilePreview(
+            return this.bucket.getFilePreview(
                 conf.appwriteBucketId,
                 fileId,
             )

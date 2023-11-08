@@ -39,6 +39,7 @@ const PostForm = ({post}) => {
                 const fileId = file.$id;
                 console.log(fileId)
                 data.featuredImage= fileId;
+                console.log()
                 const dbPost= await dbServices.createPost({
                     ...data,
                     username:userData.$id,

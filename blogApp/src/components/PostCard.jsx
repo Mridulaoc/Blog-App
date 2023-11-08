@@ -9,7 +9,7 @@ const PostCard = ({$id,title,featuredImage}) => {
             <div className='w-full justify-center mb-4'>
                 <img src={dbServices.getFilePreview(featuredImage)} alt={title} />
             </div>
-            <h2>{title}</h2>
+            <h2 className='text-white'>{title}</h2>
         </div>
     </Link>
   )
