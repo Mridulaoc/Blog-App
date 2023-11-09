@@ -71,12 +71,12 @@ export class DbServices{
 
     async getPost(slug){
        try {
-        await this.databases.getDocument(
+        return await this.databases.getDocument(
             conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
         )
-        return true;
+        
        } catch (error) {
         console.log(error);
         return false;
