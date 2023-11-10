@@ -18,18 +18,19 @@ const AllPosts = () => {
   },[])
 
   return (
-    <div className='w-full'>
-      <Container>
-        <div className='flex flex-wrap'>
+    <Container>
+    <div className='w-full py-20' >     
+        <div className='flex '>
           {posts.map((post)=>(
-            <div key={post.$id} className='w-1/4'>
-              <PostCard {...post}/>
+            <div key={post.$id} className='w-2/6 p-2'>
+              <PostCard {...post} />
             </div>
           ))}
         </div>
 
-      </Container>
+  
     </div>
+    </Container>
   )
 }
 

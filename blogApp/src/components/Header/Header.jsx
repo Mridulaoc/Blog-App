@@ -44,12 +44,12 @@ const Header = () => {
   return (
 
     
-      <header className='border-b-2 border-blue-500'>
+      <header className='border-b-2 border-blue-500 py-5'>
         <Container>
         <nav className='flex py-4 justify-between'>
           <div>Logo</div>
           <div>
-            <ul className='flex gap-2 ml-auto'>
+            <ul className='flex gap-5 ml-auto'>
               {navItems.map((item)=>
               item.active ? (
                 <li key={item.name}>
