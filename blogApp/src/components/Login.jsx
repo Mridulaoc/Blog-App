@@ -36,7 +36,7 @@ const Login = () => {
     }
   return (
     <Container>
-        <div className='w-2/5 border border-gray-500 mx-auto my-20 flex flex-col py-8 rounded-md'>
+        <div className='w-full md:w-4/5 lg:w-2/5 border border-gray-500 mx-auto   my-20 flex flex-col py-8 rounded-md'>
         <div>Logo</div>       
         <div className='flex gap-2 justify-center'>
         <p>Don&apos;t Have An Account?</p>
@@ -67,9 +67,9 @@ const Login = () => {
                 required:true,
             })}
             /> 
-            <div className='flex justify-start'>
+            <div className='flex justify-start px-10'>
             <Button
-            type='submit'>
+            type='submit' >
             Sign In
             </Button> 
             </div>

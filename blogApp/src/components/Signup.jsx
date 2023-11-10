@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {Link,useNavigate} from 'react-router-dom'
-import {Input,Button} from './index'
+import {Input,Button, Container} from './index'
 import {useForm} from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { logIn } from '../store/authSlicer'
@@ -35,7 +35,8 @@ const Signup = () => {
 
     }
   return (
-    <div className='w-full'>
+    <Container>
+    <div className='w-full md:w-4/5 lg:w-2/5 border border-gray-500 mx-auto   my-20 flex flex-col py-8 rounded-md'>
         <div className='w-full flex flex-col'>
             <div>Logo</div>
             <h2>Sign Up</h2>
@@ -46,7 +47,7 @@ const Signup = () => {
                 <Input
                 label='Name :'
                 placeholder='Enter your name'
-                className='flex flex-col mx-auto mb-2 text-black'
+                className=' mb-2 text-black'
                 {...register("name",{
                     required: true,
                 })}
@@ -57,7 +58,7 @@ const Signup = () => {
             type='email'
             label='Email:'
             placeholder='Enter email address'
-            className='flex flex-col mx-auto mb-2 text-black'
+            className=' mb-2 text-black'
             {...register("email",{
                 required:true,
                 validate:{
@@ -69,22 +70,21 @@ const Signup = () => {
             label='Password :'
             placeholder='Enter your password'
             type='password'
-            className='flex flex-col mx-auto mb-2 text-black'
+            className=' mb-2 text-black'
             {...register("password",{
                 required:true,
             })}
             />
+            <div className='flex justify-start px-10'>
             <Button
             type='submit'>
             Create Account
             </Button> 
+            </div>
             </form>
-
-
-
-        </div>
-      
+        </div>      
     </div>
+    </Container>
   )
 }
 

@@ -12,12 +12,12 @@ const Post = () => {
   const userData = useSelector(state=>state.auth.userData);
   console.log(userData)
 
-  const isAuthor = post && userData ? userData.$id === post.userId : false;
-
+ 
   useEffect(()=>{
     if (slug){
       
       dbServices.getPost(slug).then((post)=>{
+        console.log(post)
          
         if(post) setPost(post);      
         
@@ -29,6 +29,8 @@ const Post = () => {
      
       
   },[slug, navigate])
+
+  const isAuthor = post && userData ? userData.$id === post.username : false;
 
   const deletePost = ()=>{
 
