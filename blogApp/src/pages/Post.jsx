@@ -26,20 +26,14 @@ const Post = () => {
       })
     }
     else navigate('/')
+   
      
       
   },[slug, navigate])
 
-  const isAuthor = post && userData ? userData.$id === post.username : false;
-  if(post){
-     const date= new Date(post.$createAt);
-     const craetedDate = date.toLocaleString("en-us",{
-         day :"numeric",
-         month:"long",
-         year:"numeric"
-     })
-  }
-
+  const isAuthor = post && userData ? post.username === userData.$id: false;
+  console.log(isAuthor)
+  
   const deletePost = ()=>{
 
     dbServices.deletePost(post.$id).then((status)=>{
@@ -49,12 +43,26 @@ const Post = () => {
       }
     })}
 
+    if(post){
+      const date= new Date(post.$createdAt);
+      const formattedDate =date.toLocaleString("en-us",{
+          day :"numeric",
+          month:"long",
+          year:"numeric"
+      })
+      const createdDate=formattedDate;
+      console.log(createdDate)
+   }
+ 
+
   return post ? (
     <div>
       <Container>
         <div className='px-40 w-4/5 mx-auto border border-gray-600 my-20'>
          <img src={dbServices.getFilePreview(post.featuredImage)} alt={post.title} className=''/>
          <h2 className='capitalize text-5xl'>{post.title}</h2>
+         <p>Author : {post.author}</p>
+         {/* <p>Created On : {createdDate}</p> */}
          <div>
           {parse(post.content)}
          </div>

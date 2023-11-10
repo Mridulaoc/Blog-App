@@ -20,9 +20,9 @@ const AllPosts = () => {
   return (
     <Container>
     <div className='w-full py-20' >     
-        <div className='flex '>
+        <div className='flex flex-wrap '>
           {posts.map((post)=>(
-            <div key={post.$id} className='w-2/6 p-2'>
+            <div key={post.$id} className='lg:w-2/6 p-2 w-full md:w-1/2'>
               <PostCard {...post} />
             </div>
           ))}
