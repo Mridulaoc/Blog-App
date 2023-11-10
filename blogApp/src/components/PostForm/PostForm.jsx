@@ -12,7 +12,7 @@ const PostForm = ({post}) => {
     const {register, handleSubmit, watch, setValue,control, getValues}=useForm({
         defaultValues:{
             title: post ?. title || '',
-            slug: post ?.slug || '',
+            slug: post ?.$id || '',
             content : post ?. content || '',
             status: post ?. status || 'active',
         }
@@ -33,13 +33,13 @@ const PostForm = ({post}) => {
                 navigate('/post/${dbPost.$id}');
              }
         }else {
-            console.log(data)
+         
             const file = await dbServices.upload(data.image[0]);
             if(file){
                 const fileId = file.$id;
                 console.log(fileId)
                 data.featuredImage= fileId;
-                console.log()
+                console.log(data)
                 const dbPost= await dbServices.createPost({
                     ...data,
                     username:userData.$id,
