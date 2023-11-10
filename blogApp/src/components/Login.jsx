@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import authService from '../appwrite/auth'
 import {logIn} from '../store/authSlicer'
 import {useDispatch} from 'react-redux'
-import {Input, Button} from './index'
+import {Input, Button,Container} from './index'
 
 
 const Login = () => {
@@ -35,11 +35,11 @@ const Login = () => {
         
     }
   return (
-    <div className='w-full border-blue-500 border-solid border-2 mt-5'>
-        <div>Logo</div>
-        <h2>Sign In</h2>
+    <Container>
+        <div className='w-2/5 border border-gray-500 mx-auto my-20 flex flex-col py-8 rounded-md'>
+        <div>Logo</div>       
         <div className='flex gap-2 justify-center'>
-        <p>Don't Have An Account?</p>
+        <p>Don&apos;t Have An Account?</p>
         <Link to={'/signup'}>
           Sign Up
         </Link> 
@@ -50,7 +50,7 @@ const Login = () => {
             label='Email :'
             placeholder='Enter your email address'
             type='email'
-            className='flex flex-col mx-auto mb-2 text-black'
+            className='mb-2 text-black'
             {...register("email",{
                 required:true,
                 validate:{
@@ -62,17 +62,23 @@ const Login = () => {
             label='Password :'
             placeholder='Enter your password'
             type='password'
-            className='flex flex-col mx-auto mb-2 text-black'
+            className=' mb-2 text-black'
             {...register("password",{
                 required:true,
             })}
-            />
+            /> 
+            <div className='flex justify-start'>
             <Button
             type='submit'>
             Sign In
             </Button> 
+            </div>
+            
         </form>      
-    </div>
+        </div>
+    </Container>
+   
+        
   )
 }
 
