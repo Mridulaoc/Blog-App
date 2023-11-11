@@ -64,6 +64,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path:'/dashboard',
+        element:(
+          <AuthLayout authentication>
+            <Dashboard/> 
+          </AuthLayout>
+        )
+      }
+      {
         path:'/post/:slug',
         element:<Post/>
       }

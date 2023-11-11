@@ -20,7 +20,7 @@ const LogoutBtn = () => {
 
   return (
     <div>
-      <button onClick={logOutSession}>
+      <button onClick={logOutSession} className='capitalize'>
         log out
 
       </button>

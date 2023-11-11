@@ -5,9 +5,10 @@ import {Editor} from '@tinymce/tinymce-react'
 export default function RTE ({name,control,defaultValue="",label}) {
 
   return (
-   <div className='w-full flex flex-col'>
-    {label && <label className='align-left'>{label}</label>}
+   <div className='w-full flex flex-col px-10 '>
+    {label && <label className='text-left mb-2'>{label}</label>}
     <Controller
+    
      name={name || "content"}
      control={control}
      render={({field:{onChange}})=>(

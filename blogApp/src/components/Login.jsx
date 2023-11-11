@@ -17,8 +17,7 @@ const Login = () => {
         console.log(data)
         setError("");
         try {
-            const session = await authService.login(data);
-            console.log(session)
+            const session = await authService.login(data);           
            
         if (session) {
             const userData= await authService.getCurrentUser()
@@ -30,6 +29,7 @@ const Login = () => {
         }
         } catch (error) {
             setError(error.message)
+            console.log(error)
             
         }
         
@@ -38,13 +38,14 @@ const Login = () => {
     <Container>
         <div className='w-full md:w-4/5 lg:w-2/5 border border-gray-500 mx-auto   my-20 flex flex-col py-8 rounded-md'>
         <div>Logo</div>       
-        <div className='flex gap-2 justify-center'>
-        <p>Don&apos;t Have An Account?</p>
+        
+        <p>Don&apos;t Have An Account?&nbsp;
         <Link to={'/signup'}>
           Sign Up
         </Link> 
-        </div>
-        {error && <p>{error}</p>}       
+        </p>
+       
+        {error && <p className='text-red-600 bold py-5'>{error}</p>}       
         <form onSubmit={handleSubmit(login)}>
             <Input
             label='Email :'

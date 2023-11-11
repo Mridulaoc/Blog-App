@@ -44,9 +44,9 @@ const Header = () => {
   return (
 
     
-      <header className='border-b-2 border-blue-500 py-5'>
+      <header className='border-b border-blue-500 py-5'>
         <Container>
-        <nav className='flex py-4 justify-between'>
+        <nav className='flex py-4 justify-between align-middle'>
           <div>Logo</div>
           <div>
             <ul className='flex gap-5 ml-auto'>

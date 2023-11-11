@@ -9,9 +9,9 @@ const Select = React.forwardRef(function Select ({
 {
     const id = useId();
     return(
-        <div className='w-full'>
+        <div className='w-full flex gap-2 justify-center my-3'>
             {label && <label htmlFor={id}>{label}</label>}
-            <select className={`${className}`} id={id} ref={ref} {...props}>
+            <select className={`${className} rounded-md`} id={id} ref={ref} {...props}>
                 {options ?.map((option)=>(
                     <option key={option} value={option}>
                         {option}

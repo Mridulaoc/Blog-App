@@ -26,11 +26,14 @@ const PostForm = ({post}) => {
             }
              const dbPost= await dbServices.updatePost(post.$id,{
                 ...data,
-                featuredImage: file ? file.$id : undefined
+                featuredImage: file ? file.$id : undefined,
+                author: userData.name || 'Unknown'
+                
              })
 
              if(dbPost){
-                navigate('/post/${dbPost.$id}');
+                console.log(dbPost.$id)
+                navigate(`/post/${dbPost.$id}`);
              }
         }else {
          
@@ -43,10 +46,11 @@ const PostForm = ({post}) => {
                 const dbPost= await dbServices.createPost({
                     ...data,
                     username:userData.$id,
-                    author:userData.name
+                    author:userData?.name || 'Unknown'
                 })
                 if(dbPost){
-                    navigate('/post/${dbPost.$id}');
+                    
+                    navigate(`/post/${dbPost.$id}`);
                 }
             }
         }
@@ -75,8 +79,8 @@ const PostForm = ({post}) => {
 
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-        <div className=''>
+    <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-row w-full gap-5">
+        <div className='md:w-2/3 lg:3/4'>
             <Input
              label="Title" 
              placeholder="Title" 
@@ -96,10 +100,10 @@ const PostForm = ({post}) => {
               name='content'
               control={control}
               defaultValue={getValues("content")}  
-              className='text-black'           
+              className='text-black '           
              />             
         </div>
-        <div>
+        <div className='flex flex-col align-center px-10 md:w-1/3 lg:w-1/4 md:px-0 lg:px-0'>
             <Input
             label="Featured Image"
             type="file"
@@ -111,13 +115,13 @@ const PostForm = ({post}) => {
             <img 
               src={dbServices.getFilePreview(post.featuredImage)}
               alt={post.title}
-              className=''              
+              className='h-80'              
               />
             }
             <Select 
               label="Status"
               options={["Active", "Inactive"]}
-              className="text-black"
+              className="text-black mb-2"
               {...register("status",{required:true})}            
             />
             <Button
