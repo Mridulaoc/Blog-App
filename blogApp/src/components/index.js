@@ -11,6 +11,7 @@ import RTE from "./RTE";
 import Signup from "./Signup";
 import AuthLayout from "./AuthLayout";
 import PostForm from './PostForm/PostForm'
+import Loader from "./Loader";
 
 export {
     Header,
@@ -25,5 +26,6 @@ export {
     RTE,
     Signup,
     AuthLayout,
-    PostForm
+    PostForm,
+    Loader
 }
