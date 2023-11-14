@@ -11,7 +11,7 @@ const Header = () => {
     const navItems = [
       {
         name: 'Home',
-        url:'/login',
+        url:'/',
         active: true,
       },     
       {

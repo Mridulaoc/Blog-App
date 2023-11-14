@@ -24,7 +24,7 @@ const Login = () => {
             console.log(userData);
             if (userData) {
                 dispatch(logIn(userData))
-                navigate("/home") 
+                navigate("/dashboard") 
             }           
         }
         } catch (error) {
