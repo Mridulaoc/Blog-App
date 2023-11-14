@@ -11,7 +11,7 @@ const LogoutBtn = () => {
     const logOutSession=()=>{
         authService.logout().then(()=>{
             dispatch(logOut());
-            navigate("/")
+            navigate("/login")
             
         })
 
