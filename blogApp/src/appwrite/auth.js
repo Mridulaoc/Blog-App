@@ -44,11 +44,11 @@ export class AuthService {
             return await this.account.get();
         } catch (error) {
             console.log(error)
-            
+            return null;
         }
 
         
-        return null;
+       
     }
 
     async logout(){

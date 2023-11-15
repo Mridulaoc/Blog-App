@@ -3,18 +3,19 @@ import dBServices from "../appwrite/config";
 import {Container, PostCard,Loader} from '../components'
 import { useSelector } from 'react-redux';
 import { Query } from 'appwrite';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function Dashboard() {
     const [posts, setPosts] = useState([])
     const [loading,setLoading] = useState(true)
+    const {username} = useParams()
     const userData = useSelector(state=>state.auth.userData)
     console.log(userData.$id)
     
 
     useEffect(() => {
         // setLoading(true)
-        dBServices.getPosts([Query.equal("username", `${userData.$id}`)]).then((posts) => {
+        dBServices.getPosts([Query.equal("username", `${username}`)]).then((posts) => {
             console.log(posts)
             if (posts) {                
                 setPosts(posts.documents)

@@ -19,10 +19,7 @@ const router = createBrowserRouter([
     path:'/',
     element:<App/>,
     children:[
-      {
-        index:true,
-        element:<Home/>,
-      },
+      
       
       {
         path:'/',
@@ -71,7 +68,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:'/dashboard',
+        path:'/dashboard/:name',
         element:(
           <AuthLayout authentication>
             <Dashboard/> 
