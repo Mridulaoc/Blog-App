@@ -78,7 +78,7 @@ const Post = () => {
          }
          <h2 className='capitalize text-xl md:text-3xl'>{post.title}</h2>
          <h3 className='md:text-2xl text-l'>Author : <span className='capitalize'>{post.author}</span></h3>
-         {/* <span>Created On : {createdDate}</span> */}
+         {/* <span>Created On : ${createdDate}</span> */}
          <div>
           {parse(post.content)}
          </div>
