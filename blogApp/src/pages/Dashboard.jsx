@@ -28,24 +28,16 @@ function Dashboard() {
 
     
   
-    if (posts?.length === 0) {
-        return (
-    //         <div className="w-full py-8 mt-4 text-center">
-    //             <Container>
-    //                 <div className="flex flex-wrap">
-    //                     <div className="p-2 w-full">
-    //                         <h1 className="text-2xl text-white   font-bold hover:text-gray-500">
-    //                             Login to read posts
-    //                         </h1>
-    //                     </div>
-    //                 </div>
-    //             </Container>
-    //         </div>
-    //     )
-    <div className='text-white'>
+    if (posts.length === 0) {
+        return (    
+    <div className='text-white w-full py-8 h-96'>
+    <Container>
     <h2 >Welcome <span>{userData.name}</span></h2>  
-<p>You have not added any posts yet. To read posts go to <Link to={'/all-posts'}>All Posts</Link></p>
-</div>
+    <p>
+        You have not added any posts yet. To read posts go to <Link to={'/all-posts'}>All Posts</Link>
+    </p>
+    </Container>
+   </div>
         )
     }
     

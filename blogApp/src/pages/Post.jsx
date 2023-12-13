@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import dbServices from '../appwrite/config'
-import { Button, Container} from '../components/index'
+import { Button, Container,CommentForm} from '../components/index'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import parse from 'html-react-parser'
@@ -82,7 +82,9 @@ const Post = () => {
          <div>
           {parse(post.content)}
          </div>
-        
+         <div>
+          <CommentForm/>
+         </div>
         </div>
         
       </Container>
