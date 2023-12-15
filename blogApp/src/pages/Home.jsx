@@ -80,6 +80,8 @@ function Home() {
         ):
         <Container>
                 <h2 >Welcome <span>{userData.name}</span></h2>
+                <p>You have not added any posts yet. To read posts go to <Link to={'/all-posts'}>All Posts</Link>
+                </p>
                 </Container>
 
                     }
