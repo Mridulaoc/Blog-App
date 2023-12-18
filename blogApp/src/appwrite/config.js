@@ -18,7 +18,7 @@ export class DbServices{
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appwriteArticleCollectionId,
                 slug,
                 {
                     title,
@@ -40,7 +40,7 @@ export class DbServices{
         try {
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appwriteArticleCollectionId,
                 slug,
             )
             return true;
@@ -54,7 +54,7 @@ export class DbServices{
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appwriteArticleCollectionId,
                 slug,
                 {
                     title,
@@ -74,7 +74,7 @@ export class DbServices{
        try {
         return await this.databases.getDocument(
             conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appwriteArticleCollectionId,
                 slug,
         )
         
@@ -90,7 +90,7 @@ export class DbServices{
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                conf.appwriteArticleCollectionId,
                 queries,
             )
             
@@ -144,6 +144,29 @@ export class DbServices{
             
         }
     }
+
+    async createComment({post_id,user_id,comment,author}){
+        try {
+            return await this.databases.createDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCommentCollectionId,
+                ID.unique(),
+                
+                {
+                   post_id,
+                   user_id,
+                   comment,
+                   author
+
+                }
+            )
+        } catch (error) {
+
+            throw new Error(error)
+            
+        }
+    }
+
 
 
 

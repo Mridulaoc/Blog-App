@@ -32,7 +32,7 @@ const PostForm = ({post}) => {
              })
 
              if(dbPost){
-                console.log(dbPost.$id)
+                // console.log(dbPost.$id)
                 navigate(`/post/${dbPost.$id}`);
              }
         }else {
