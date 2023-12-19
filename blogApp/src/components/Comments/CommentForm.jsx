@@ -14,7 +14,7 @@ const CommentForm = ({post}) => {
 
     const dbComment = await dbServices.createComment({
              ...data,
-             user_id:userData.$id,
+             user_id:userData.$id, 
              post_id:post.$id,
              author:userData.name
     })
@@ -24,17 +24,16 @@ const CommentForm = ({post}) => {
 
   return (
     <div className='w-full'>
-      <form onSubmit={handleSubmit(submit)} className='w-full  flex flex-col'>
+      <form onSubmit={handleSubmit(submit)} className='w-4/5 mx-auto flex flex-col'>
         <textarea 
         rows="5" cols="75"
         placeholder="Share your thoughts..."
-        className='w-2/3 mx-auto bg-transparent rounded border border-gray-600 p-2 my-8'
+        className='w-full  bg-transparent rounded border border-gray-600 p-2 my-8'
         {...register("comment",{required:true})} 
         />
-        <div className='w-2/3 mx-auto flex justify-end mb-5'>
+        <div className='w-full flex justify-end mb-5'>
         <Button
         type='submit'
-        className=' '        
         >
           Submit
         </Button>
