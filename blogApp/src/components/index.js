@@ -13,6 +13,8 @@ import AuthLayout from "./AuthLayout";
 import PostForm from './PostForm/PostForm'
 import Loader from "./Loader";
 import CommentForm from "./Comments/CommentForm";
+import Comments from "./Comments/Comments";
+import Comment from "./Comments/Comment";
 
 export {
     Header,
@@ -29,5 +31,7 @@ export {
     AuthLayout,
     PostForm,
     Loader,
-    CommentForm
+    CommentForm,
+    Comments,
+    Comment
 }

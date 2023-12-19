@@ -1,6 +1,4 @@
-import React, {useEffect, useState} from 'react'
-import dBServices from "../appwrite/config";
-import authService from '../appwrite/auth';
+import {useEffect, useState} from 'react'
 import {Container, PostCard,Loader} from '../components'
 import { useSelector } from 'react-redux';
 import { Query } from 'appwrite';

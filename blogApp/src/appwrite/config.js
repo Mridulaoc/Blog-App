@@ -167,6 +167,23 @@ export class DbServices{
         }
     }
 
+    async getComments(queries){
+
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCommentCollectionId,
+                queries,
+            )
+            
+        } catch (error) {
+            console.log(error)
+            return false;
+            
+        }     
+
+    }
+
 
 
 
