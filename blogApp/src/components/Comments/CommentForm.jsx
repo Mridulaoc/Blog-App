@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useForm} from "react-hook-form"
 import{Button} from "../index"
 import dbServices from '../../appwrite/config'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import { addComments } from '../../store/commentSlicer'
+
 
 const CommentForm = ({post}) => {
+  const [value,setValue] = useState()
+  const dispatch = useDispatch();
 
   const userData =  useSelector((state)=>state.auth.userData);
 
@@ -18,6 +22,10 @@ const CommentForm = ({post}) => {
              post_id:post.$id,
              author:userData.name
     })
+    setValue("")
+    if(dbComment){
+        dispatch(addComments(dbComment))
+    }
     console.log(dbComment)
 
   }
@@ -28,6 +36,7 @@ const CommentForm = ({post}) => {
         <textarea 
         rows="5" cols="75"
         placeholder="Share your thoughts..."
+        value={value}
         className='w-full  bg-transparent rounded border border-gray-600 p-2 my-8'
         {...register("comment",{required:true})} 
         />
