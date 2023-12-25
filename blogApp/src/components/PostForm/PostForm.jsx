@@ -43,10 +43,11 @@ const PostForm = ({post}) => {
                 console.log(fileId)
                 data.featuredImage= fileId;
                 console.log(data)
+               
                 const dbPost= await dbServices.createPost({
                     ...data,
-                    username:userData.$id,
-                    author:userData?.name || 'Unknown'
+                    username:userData?.$id || userData?.userdata.$id,
+                    author:userData?.name ||userData?.userdata.name || 'Unknown'
                 })
                 if(dbPost){
                     

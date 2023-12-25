@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import dbServices from '../appwrite/config'
-import { Button, Container,CommentForm,Comments} from '../components/index'
+import { Button, Container,Comments} from '../components/index'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import parse from 'html-react-parser'
@@ -12,6 +12,10 @@ const Post = () => {
   const userData = useSelector(state=>state.auth.userData);
   console.log(userData)
 
+  
+  
+
+  
  
   useEffect(()=>{
     if (slug){
@@ -44,9 +48,8 @@ const Post = () => {
     })}
 
     if(post){
-      const date= new Date(post.$createdAt);
+      const date= new Date(post.$createdAt);      
       const options ={
-
         day :"numeric",
         month:"long",
         year:"numeric"

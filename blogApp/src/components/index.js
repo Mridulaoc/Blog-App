@@ -15,7 +15,7 @@ import Loader from "./Loader";
 import CommentForm from "./Comments/CommentForm";
 import Comments from "./Comments/Comments";
 import Comment from "./Comments/Comment";
-
+import {CommentedTime} from "./Helpers/CommentedTime"
 export {
     Header,
     Footer,
@@ -33,5 +33,6 @@ export {
     Loader,
     CommentForm,
     Comments,
-    Comment
+    Comment,
+    CommentedTime
 }

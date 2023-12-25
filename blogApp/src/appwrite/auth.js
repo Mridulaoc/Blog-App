@@ -45,9 +45,7 @@ export class AuthService {
         } catch (error) {
             console.log(error)
             return null;
-        }
-
-        
+        }    
        
     }
 
@@ -57,6 +55,30 @@ export class AuthService {
             return await this.account.deleteSessions();
         } catch (error) {
             console.log(error)
+        }
+    }
+
+    async createGoogleAuthentication(){
+
+        try {
+            return await this.account.createOAuth2Session('google','http://localhost:5173', 'http://localhost:5173/signUp')
+            
+        } catch (error) {
+            console.log(error)
+            
+        }
+        
+    }  
+    
+    async getCurrentSession(){
+        try {
+
+            return await this.account.getSession('current')
+            
+        } catch (error) {
+
+            console.log(error)
+            
         }
     }
 }

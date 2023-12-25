@@ -1,10 +1,10 @@
-import React from 'react'
+import { CommentedTime } from "../index";
 
 const Comment = ({author,$createdAt,comment}) => {
 
   const date = new Date($createdAt);
   console.log(new Intl.DateTimeFormat('en-US').format(date));
-  const createdDate = new Intl.DateTimeFormat('en-US').format(date);
+  // const createdDate = new Intl.DateTimeFormat('en-US').format(date);
 
 
   
@@ -13,7 +13,7 @@ const Comment = ({author,$createdAt,comment}) => {
   return (
     <div className='w-full flex gap-1 flex-col items-start my-3' >
       <p className='capitalize'>{author}</p>
-      <p>{createdDate}</p>
+      <p><CommentedTime CommentDate = {$createdAt}/></p>
       <p className='my-3 md:text-base text-xs'>{comment}</p>
            
     </div>

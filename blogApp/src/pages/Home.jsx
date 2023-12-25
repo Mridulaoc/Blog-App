@@ -4,36 +4,45 @@ import { useSelector } from 'react-redux';
 import { Query } from 'appwrite';
 import { Link } from 'react-router-dom';
 import dbServices from '../appwrite/config';
+import authService from '../appwrite/auth';
 
 function Home() {
     const [posts, setPosts] = useState([])
     const [loading,setLoading] = useState(true)
+    const [user,setUser]=useState();
     const userData = useSelector(state=>state.auth.userData)
+   
     
     
     
 
     useEffect(() => {
+
+        authService.getCurrentSession().then((session) => {
+            setUser(session)
+            console.log(user)
+        })
+       
+       
         // setLoading(true)
+       
 
        if(userData)
-
-        {
-            dbServices.getPosts([Query.equal("username", `${userData.$id}`)]).then((posts) => {
+        {              
+            
+            dbServices.getPosts([Query.equal("username", `${userData.$id||userData.userdata.$id}`)])
+            .then((posts) => {    
+                
                 console.log(posts)
-                if (posts) {                
+                if (posts) { 
+                    console.log(posts.documents)               
                     setPosts(posts.documents)
                     setLoading(false)
-                }
-              
-            })
-    
+                }             
+            })    
         }else{
             setPosts([])
-        }
-        
-           
-        
+        }        
         
     }, [])
 
@@ -51,10 +60,7 @@ function Home() {
                 </Container>
             </div>
         )
-//     <div className='text-white'>
-//     <h2 >Welcome <span>{userData.name}</span></h2>  
-// <p>You have not added any posts yet. To read posts go to <Link to={'/all-posts'}>All Posts</Link></p>
-// </div>
+
             }
     
   
@@ -65,10 +71,10 @@ function Home() {
         (
         <div className='w-full py-8'>
             <Container>
-                <h2 >Welcome <span>{userData.name}</span></h2>
+                <h2 className=' capitalize'>Welcome <span>{userData.name||userData.userdata.name}</span></h2>
                 <div className='flex flex-wrap'>
                     {posts.map((post) => (
-                        <div key={post.$id} className='p-2 w-1/4'>
+                        <div key={post.$id} className='lg:w-2/6 p-2 w-full md:w-1/2'>
                             <PostCard {...post} />
                         </div>
                     ))}
@@ -78,7 +84,7 @@ function Home() {
         ):
         <Container>
                 <h2 >Welcome <span>{userData.name}</span></h2>
-                <p>You have not added any posts yet. To read posts go to <Link to={'/all-posts'}>All Posts</Link>
+                <p>You have not added any posts yet. To read posts go to <Link to={'/all-posts'}><span className=' font-bold'>All Posts</span></Link>
                 </p>
                 </Container>
 

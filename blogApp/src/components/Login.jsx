@@ -10,11 +10,12 @@ import {Input, Button,Container} from './index'
 const Login = () => {
     const dispatch = useDispatch();
     const navigate =useNavigate();
+    const [gAuth, setGAuth]=useState(false);
     const [error,setError]= useState("");
     const {register,handleSubmit} = useForm();
 
     const login =async(data)=>{
-        console.log(data)
+       
         setError("");
         try {
             const session = await authService.login(data);           
@@ -34,6 +35,29 @@ const Login = () => {
         }
         
     }
+
+    const oAuth2login =async()=>{
+
+        setError("");
+        try {
+            const userData=  await authService.createGoogleAuthentication();             
+
+            // if(userData){
+            //     const userData = await authService.getCurrentSession();                              
+            //     if(userData){
+            //     setGAuth(true)                               
+            //     dispatch(logIn(gAuth));
+            //     }
+            // }
+        } catch (error) {
+
+            setError(error.message)
+            
+        }
+       
+        
+    }
+
   return (
     <Container>
         <div className='w-full md:w-4/5 lg:w-2/5 border border-gray-500 mx-auto   my-20 flex flex-col py-8 rounded-md'>
@@ -73,9 +97,11 @@ const Login = () => {
             type='submit' >
             Sign In
             </Button> 
-            </div>
-            
-        </form>      
+            </div>            
+        </form>
+        <Button className='m-10' onClick={()=>oAuth2login()}>
+                Sign In With Google
+         </Button>      
         </div>
     </Container>
    

@@ -32,9 +32,9 @@ const Signup = () => {
             setError(error.message)
             
         }
-        
-
     }
+
+   
   return (
     <Container>
     <div className='w-full md:w-4/5 lg:w-2/5 border border-gray-500 mx-auto   my-20 flex flex-col py-8 rounded-md'>
@@ -111,6 +111,7 @@ const Signup = () => {
             </Button> 
             </div>
             </form>
+          
         </div>      
     </div>
     </Container>
