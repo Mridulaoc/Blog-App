@@ -10,7 +10,6 @@ import {Input, Button,Container} from './index'
 const Login = () => {
     const dispatch = useDispatch();
     const navigate =useNavigate();
-    const [gAuth, setGAuth]=useState(false);
     const [error,setError]= useState("");
     const {register,handleSubmit} = useForm();
 

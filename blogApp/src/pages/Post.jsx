@@ -4,6 +4,8 @@ import { Button, Container,Comments} from '../components/index'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import parse from 'html-react-parser'
+import {PiHandsClappingBold} from "react-icons/pi";
+import { FaRegComment } from "react-icons/fa6";
 
 const Post = () => {
   const [post, setPost]=useState(null);  
@@ -84,6 +86,10 @@ const Post = () => {
          <span>Created On : {formattedDate}</span>
          <div>
           {parse(post.content)}
+         </div>
+         <div className='flex gap-20 m-10'>
+         <PiHandsClappingBold className='md:text-3xl text-lg' />
+         <FaRegComment className='md:text-3xl text-lg' />
          </div>
          </div>
         <div>

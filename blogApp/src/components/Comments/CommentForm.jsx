@@ -18,9 +18,9 @@ const CommentForm = ({post}) => {
 
     const dbComment = await dbServices.createComment({
              ...data,
-             user_id:userData.$id, 
+             user_id:userData.$id || userData.userdata.$id, 
              post_id:post.$id,
-             author:userData.name
+             author:userData.name || userData.userdata.name
     })
     setValue("")
     if(dbComment){
