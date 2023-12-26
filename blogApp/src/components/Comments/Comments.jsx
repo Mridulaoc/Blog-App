@@ -1,4 +1,4 @@
-import  { useEffect, useRef } from 'react'
+import  { useEffect, useRef, useState } from 'react'
 import dbServices from '../../appwrite/config'
 import { Query } from 'appwrite'
 import { CommentForm, Container} from '../index'
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setComments } from '../../store/commentSlicer'
 
 const Comments = ({post}) => {
+ 
   const commentsData = useSelector((state)=>{return state.comments.comments});
   const commentsDataRef = useRef(commentsData)
   const dispatch = useDispatch();

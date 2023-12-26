@@ -9,9 +9,11 @@ import { FaRegComment } from "react-icons/fa6";
 
 const Post = () => {
   const [post, setPost]=useState(null);  
+  const [displayComment,setDisplayComment]= useState(false);
   const {slug} = useParams();
   const navigate = useNavigate();
   const userData = useSelector(state=>state.auth.userData);
+  const commentsData = useSelector((state)=>{return state.comments.comments});
   console.log(userData)
 
   
@@ -84,17 +86,22 @@ const Post = () => {
          <h2 className='capitalize text-xl md:text-3xl'>{post.title}</h2>
          <h3 className='md:text-2xl text-l'>Author : <span className='capitalize'>{post.author}</span></h3>
          <span>Created On : {formattedDate}</span>
-         <div>
+         <div className=' text-left px-20'>
           {parse(post.content)}
          </div>
          <div className='flex gap-20 m-10'>
-         <PiHandsClappingBold className='md:text-3xl text-lg' />
-         <FaRegComment className='md:text-3xl text-lg' />
+         <PiHandsClappingBold className='md:text-3xl text-lg cursor-pointer' />
+         <div className='flex gap-2'>
+         <FaRegComment className='md:text-3xl text-lg cursor-pointer' onClick={()=>setDisplayComment(!displayComment)}/>
+          <span>{commentsData.length}</span>
+          </div>         
          </div>
-         </div>
-        <div>
+         </div>          
+         <div className={displayComment ? 'block' : 'hidden'}>
           <Comments post={post}/>
         </div>
+         
+       
         
       </Container>
       

@@ -2,10 +2,7 @@ import { CommentedTime } from "../index";
 
 const Comment = ({author,$createdAt,comment}) => {
 
-  const date = new Date($createdAt);
-  console.log(new Intl.DateTimeFormat('en-US').format(date));
-  // const createdDate = new Intl.DateTimeFormat('en-US').format(date);
-
+ 
 
   
 
