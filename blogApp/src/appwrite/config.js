@@ -184,6 +184,57 @@ export class DbServices{
 
     }
 
+    async createLikes({post_id,Liked_by}){
+        try {
+            return await this.databases.createDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteLikesCollectionId ,                 
+                ID.unique(),
+                {
+                   post_id,
+                   Liked_by
+
+                }
+            )
+        } catch (error) {
+
+            throw new Error(error)
+            
+        }
+    }
+
+    async getLikes(queries){
+
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteLikesCollectionId,
+                queries,
+            )
+            
+        } catch (error) {
+            console.log(error)
+            return false;
+            
+        }     
+
+    }
+
+    async deleteLike(id){
+        try {
+            await this.databases.deleteDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteLikesCollectionId,
+                id
+            )
+            return true;
+        } catch (error) {
+           console.log(error)
+            return false;
+        }
+    }
+
+
 
 
 

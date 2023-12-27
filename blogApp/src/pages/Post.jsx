@@ -1,11 +1,13 @@
 import  { useEffect, useState } from 'react'
 import dbServices from '../appwrite/config'
-import { Button, Container,Comments} from '../components/index'
+import { Button, Container,Comments, Likes} from '../components/index'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import parse from 'html-react-parser'
 import {PiHandsClappingBold} from "react-icons/pi";
+
 import { FaRegComment } from "react-icons/fa6";
+import { addLikes } from '../store/likeSlicer'
 
 const Post = () => {
   const [post, setPost]=useState(null);  
@@ -14,42 +16,31 @@ const Post = () => {
   const navigate = useNavigate();
   const userData = useSelector(state=>state.auth.userData);
   const commentsData = useSelector((state)=>{return state.comments.comments});
-  console.log(userData)
-
-  
-  
-
-  
+  console.log(userData)  
+  const usedispatch = useDispatch()
  
   useEffect(()=>{
     if (slug){
       
-      dbServices.getPost(slug).then((post)=>{
-        console.log(post)
-         
-        if(post) setPost(post);      
-        
-        else navigate('/');
-        
+      dbServices.getPost(slug).then((post)=>{           
+        if(post) setPost(post);         
+        else navigate('/');        
       })
     }
-    else navigate('/')
-   
-     
-      
+    else navigate('/')      
   },[slug, navigate])
 
   const isAuthor = post && userData ? post.username === userData.$id: false;
   console.log(isAuthor)
   
   const deletePost = ()=>{
-
     dbServices.deletePost(post.$id).then((status)=>{
       if(status){
         dbServices.deleteFile(post.featuredImage);
         navigate('/')
       }
     })}
+    
 
     if(post){
       const date= new Date(post.$createdAt);      
@@ -90,7 +81,11 @@ const Post = () => {
           {parse(post.content)}
          </div>
          <div className='flex gap-20 m-10'>
-         <PiHandsClappingBold className='md:text-3xl text-lg cursor-pointer' />
+          <Likes post={post} userData={userData}/>
+         {/* <button onClick={()=>addLike()}>
+        <PiHandsClappingBold className='md:text-3xl text-lg cursor-pointer' />
+        </button> */}
+      
          <div className='flex gap-2'>
          <FaRegComment className='md:text-3xl text-lg cursor-pointer' onClick={()=>setDisplayComment(!displayComment)}/>
           <span>{commentsData.length}</span>
