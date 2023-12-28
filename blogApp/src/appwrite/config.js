@@ -220,12 +220,12 @@ export class DbServices{
 
     }
 
-    async deleteLike(id){
+    async deleteLike(documentId){
         try {
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteLikesCollectionId,
-                id
+                documentId
             )
             return true;
         } catch (error) {

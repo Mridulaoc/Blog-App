@@ -3,6 +3,7 @@ import {PiHandsClappingBold} from "react-icons/pi";
 import dbServices from '../../appwrite/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLikes, deleteLikes } from '../../store/likeSlicer';
+import { Query } from 'appwrite';
 
 const AddLikes = ({post, userId}) => {
     const dispatch = useDispatch();
@@ -10,11 +11,12 @@ const AddLikes = ({post, userId}) => {
 
     const addLike = async()=>{
           
-        //    dbServices.getLikes("Liked_by", userId).then((likes)=>{
-        //         if(likes){
-        //         dbServices.deleteLike(likesData.$id);
-        //         dispatch(deleteLikes(likesData.$id));
-        //     }
+           dbServices.getLikes([Query.equal("Liked_by", `${userId}`)]).then((likes)=>{
+                if(likes){
+                dbServices.deleteLike(likesData.$id);
+                dispatch(deleteLikes(likesData.$id));
+                console.log(likesData)
+            }});
                 
                 const dbLikes = await dbServices.createLikes({
                     post_id: post.$id,
