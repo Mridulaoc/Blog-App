@@ -1,43 +1,26 @@
-import React from 'react'
+import  { useState } from 'react'
 import {PiHandsClappingBold} from "react-icons/pi";
 import dbServices from '../../appwrite/config';
-import { useDispatch, useSelector } from 'react-redux';
-import { addLikes, deleteLikes } from '../../store/likeSlicer';
-import { Query } from 'appwrite';
 
-const AddLikes = ({post, userId}) => {
-    const dispatch = useDispatch();
-    const likesData = useSelector(state => state.likes.likes);
+const AddLikes = ({userData,likes}) => {
 
-    const addLike = async()=>{
-          
-           dbServices.getLikes([Query.equal("Liked_by", `${userId}`)]).then((likes)=>{
-                if(likes){
-                dbServices.deleteLike(likesData.$id);
-                dispatch(deleteLikes(likesData.$id));
-                console.log(likesData)
-            }});
-                
-                const dbLikes = await dbServices.createLikes({
-                    post_id: post.$id,
-                    Liked_by:userId,
-                })
-                console.log(dbLikes);
-                if(dbLikes){
-                    dispatch(addLikes(dbLikes));        
-              
-           
+    const [alreadyLiked,setAlreadyLiked] =useState(false);
 
-           }}        
-        
-  
-        
-
-
-
+    const addLike = () =>{
+        if(userData===likes.Liked_by){
+            let id = likes.post_id + likes.Liked_by;
+            console.log(id)
+            // dbServices.deleteFile(likes.Liked_by)
+        setAlreadyLiked(true);
+        console.log(alreadyLiked)
+        }else{
+            setAlreadyLiked(false);
+            console.log(false)
+        }
+    }
   return (
     <div>
-        <button onClick={()=>addLike()}>
+         <button onClick={()=>addLike()}>
         <PiHandsClappingBold className='md:text-3xl text-lg cursor-pointer' />
         </button>
       

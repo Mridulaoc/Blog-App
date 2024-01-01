@@ -1,31 +1,56 @@
-import React, { useRef,useEffect } from 'react'
-import AddLikes from '../Likes/AddLikes'
-import { useSelector,useDispatch } from 'react-redux'
+import { useEffect, useRef } from 'react'
+import AddLikes from './AddLikes'
 import dbServices from '../../appwrite/config'
 import { Query } from 'appwrite'
+import { useDispatch, useSelector } from 'react-redux'
 import { setLikes } from '../../store/likeSlicer'
+import { PiHandsClappingFill,PiHandsClappingBold } from "react-icons/pi";
+
 
 const Likes = ({post,userData}) => {
-    const userId = userData.$id || userData.userdata.$id
-    const likesData = useSelector((state)=>{return state.likes.likes});
-  const likesDataRef = useRef(likesData);
-  const dispatch = useDispatch();
+    console.log(userData)
+    const dispatch = useDispatch();
+    const likesData = useSelector(state => state.likes.likes)
+    console.log(likesData)
 
-  useEffect(()=>{
-    dbServices.getLikes([Query.equal("post_id", `${post.$id}`)]).then((likes) =>{
-      console.log(likes)
-      if(likes){
-        dispatch(setLikes(likes));
-      }
-      else{
-        dispatch(setLikes([]))
-      }
-    })
-  },[likesDataRef])
-    
+    const likesDataRef = useRef(likesData)
+
+    const addLike = async()=>{
+        const dbLikes = await dbServices.createLikes({
+            post_id:post.$id,
+            Liked_by:userData.$id
+        })
+        if(dbLikes){
+            console.log(dbLikes)
+        }
+    }
+
+
+
+    useEffect(()=>{
+        dbServices.getLikes([Query.equal("post_id",`${post.$id}`)]).then((likes) => {
+            if(likes){
+                console.log(likes.documents)
+                dispatch(setLikes(likes.documents))                
+            }else{
+                dispatch(setLikes([]))
+            }
+        })
+    },[likesDataRef])
+
+    const isAlreadyLiked = likesData && userData ? userData.$id === likesData.Liked_by: false;
+    console.log(isAlreadyLiked)
   return (
-    <div>
-      <AddLikes post={post} userId={userId}  />
+    <div className='flex gap-3'>
+      {/* <AddLikes userData={userData.$id} likes={likesData}/>{likesData.length} */}
+      {
+        isAlreadyLiked ? 
+        (<button> <PiHandsClappingFill className='md:text-3xl text-lg cursor-pointer' /></button>):
+        (<button onClick={()=>addLike()}>
+        <PiHandsClappingBold className='md:text-3xl text-lg cursor-pointer' />
+        </button>)
+      }
+      
     </div>
   )
 }

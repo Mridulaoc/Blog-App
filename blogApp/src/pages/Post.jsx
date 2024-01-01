@@ -1,6 +1,6 @@
 import  { useEffect, useState } from 'react'
 import dbServices from '../appwrite/config'
-import { Button, Container,Comments, Likes} from '../components/index'
+import { Button, Container,Comments,Likes} from '../components/index'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import parse from 'html-react-parser'
@@ -17,7 +17,7 @@ const Post = () => {
   const userData = useSelector(state=>state.auth.userData);
   const commentsData = useSelector((state)=>{return state.comments.comments});
   console.log(userData)  
-  const usedispatch = useDispatch()
+  // const usedispatch = useDispatch()
  
   useEffect(()=>{
     if (slug){

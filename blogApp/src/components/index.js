@@ -16,7 +16,6 @@ import CommentForm from "./Comments/CommentForm";
 import Comments from "./Comments/Comments";
 import Comment from "./Comments/Comment";
 import {CommentedTime} from "./Helpers/CommentedTime"
-import AddLikes from './Likes/AddLikes'
 import Likes from "./Likes/Likes"
 export {
     Header,
@@ -37,6 +36,5 @@ export {
     Comments,
     Comment,
     CommentedTime,
-    AddLikes,
     Likes
 }
