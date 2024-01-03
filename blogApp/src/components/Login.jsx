@@ -5,6 +5,7 @@ import authService from '../appwrite/auth'
 import {logIn} from '../store/authSlicer'
 import {useDispatch} from 'react-redux'
 import {Input, Button,Container} from './index'
+import { FcGoogle } from "react-icons/fc";
 
 
 const Login = () => {
@@ -98,8 +99,12 @@ const Login = () => {
             </Button> 
             </div>            
         </form>
-        <Button className='m-10' onClick={()=>oAuth2login()}>
-                Sign In With Google
+        <Button className='m-10 flex justify-center  ' onClick={()=>oAuth2login()}>
+            <div className='flex gap-5 items-center'>
+            <FcGoogle className=' md:text-4xl ' />
+             Sign In With Google
+            </div>
+                
          </Button>      
         </div>
     </Container>

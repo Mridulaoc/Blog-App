@@ -19,10 +19,11 @@ const likeSlice = createSlice({
             state.likes= action.payload;
         },
 
-        // deleteLikes:(state,action)=>{
-        //     state.filter(($id)=>$id !== action.payload);
-        //     console.log(state.likes);
-        // }
+        deleteLikes:(state,action)=>{
+            console.log(action.payload)
+            state.likes=state.likes.filter((like)=>like.$id !== action.payload);
+            console.log(state.likes);
+        }
     }
 })
 

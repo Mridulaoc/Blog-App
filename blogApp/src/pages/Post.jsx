@@ -1,13 +1,13 @@
-import  { useEffect, useState } from 'react'
+import  { useEffect, useRef, useState } from 'react'
 import dbServices from '../appwrite/config'
 import { Button, Container,Comments,Likes} from '../components/index'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import parse from 'html-react-parser'
-import {PiHandsClappingBold} from "react-icons/pi";
-
+import { Query } from 'appwrite'
+import { setLikes } from '../store/likeSlicer'
 import { FaRegComment } from "react-icons/fa6";
-import { addLikes } from '../store/likeSlicer'
+
 
 const Post = () => {
   const [post, setPost]=useState(null);  
@@ -16,12 +16,12 @@ const Post = () => {
   const navigate = useNavigate();
   const userData = useSelector(state=>state.auth.userData);
   const commentsData = useSelector((state)=>{return state.comments.comments});
-  console.log(userData)  
-  // const usedispatch = useDispatch()
+  const likesData = useSelector(state=> state.likes.likes);
+ 
+ 
  
   useEffect(()=>{
-    if (slug){
-      
+    if (slug){      
       dbServices.getPost(slug).then((post)=>{           
         if(post) setPost(post);         
         else navigate('/');        
@@ -30,12 +30,15 @@ const Post = () => {
     else navigate('/')      
   },[slug, navigate])
 
+  console.log(post)
+
   const isAuthor = post && userData ? post.username === userData.$id: false;
   console.log(isAuthor)
   
   const deletePost = ()=>{
     dbServices.deletePost(post.$id).then((status)=>{
       if(status){
+        console.log(status)
         dbServices.deleteFile(post.featuredImage);
         navigate('/')
       }
@@ -53,6 +56,11 @@ const Post = () => {
       let createdDate = formattedDate;
       console.log(createdDate)
    }
+
+
+
+  const isAlreadyLiked = likesData && userData ? userData.$id === likesData.Liked_by: false;
+  console.log(isAlreadyLiked)
  
 
   return post ? (
@@ -81,7 +89,7 @@ const Post = () => {
           {parse(post.content)}
          </div>
          <div className='flex gap-20 m-10'>
-          <Likes post={post} userData={userData}/>
+          <Likes post={post} userData={userData} />
          {/* <button onClick={()=>addLike()}>
         <PiHandsClappingBold className='md:text-3xl text-lg cursor-pointer' />
         </button> */}
