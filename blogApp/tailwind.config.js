@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       height:{
-        '120':'30rem'
+        '100':'25rem'
       }
 
     },
