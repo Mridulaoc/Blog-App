@@ -32,9 +32,14 @@ function App() {
   return !loading ? (
     <>
       
-      <Header/>     
+      
+      <Header/> 
+      
       <Outlet/>
+      
       <Footer/>
+      
+      
       
      
     </>

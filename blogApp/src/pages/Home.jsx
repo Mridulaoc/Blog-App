@@ -48,7 +48,7 @@ function Home() {
 
     if (!userData) {
         return (
-            <div className="w-full py-8 mt-4 text-center">
+            <div className="w-full py-8 mt-4 text-center h-96">
                 <Container>
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
@@ -83,10 +83,13 @@ function Home() {
         </div>
         ):
         <Container>
+            <div className=' h-120'>
                 <h2 >Welcome <span>{userData.name}</span></h2>
                 <p>You have not added any posts yet. To read posts go to <Link to={'/all-posts'}><span className=' font-bold'>All Posts</span></Link>
                 </p>
-                </Container>
+            </div>           
+        </Container>
+               
 
                     }
         </>
